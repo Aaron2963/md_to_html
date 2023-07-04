@@ -5,5 +5,11 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[profile.dev]
+rustc_args = ["--cfg", "type_length_limit=16777216"]
+
+[profile.release]
+rustc_args = ["--cfg", "type_length_limit=16777216"]
+
 [dependencies]
 markdown = "1.0.0-alpha.10"

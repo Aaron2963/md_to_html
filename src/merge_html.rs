@@ -1,5 +1,3 @@
-use std::fs;
-
 struct HtmlContent {
     title: String,
     body: String,
@@ -8,9 +6,9 @@ struct HtmlContent {
 }
 
 pub fn merge(title: &String, body: &String) -> String {
-    let html = fs::read_to_string("asset/index.html").unwrap();
-    let style = fs::read_to_string("asset/style.css").unwrap();
-    let script = fs::read_to_string("asset/script.js").unwrap();
+    let html = include_str!("../asset/index.html").to_string();
+    let style = include_str!("../asset/style.css").to_string();
+    let script = include_str!("../asset/script.js").to_string();
     let content = HtmlContent {
         title: title.clone(),
         body: body.clone(),

@@ -37,9 +37,9 @@ fn main() {
         println!("{}", html);
     }
     if params.live {
-        serve(&full_html);
+        serve(full_html.clone());
     }
-    println!("Source markdown file: `{}` has been converted to html", params.src);
+    println!("[DONE] Source markdown file: `{}` has been converted to html", params.src);
 }
 
 fn handle_args() -> Params {
