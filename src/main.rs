@@ -36,10 +36,10 @@ fn main() {
     if params.print {
         println!("{}", html);
     }
+    println!("[DONE] Source markdown file: `{}` has been converted to html", params.src);
     if params.live {
         serve(full_html.clone());
     }
-    println!("[DONE] Source markdown file: `{}` has been converted to html", params.src);
 }
 
 fn handle_args() -> Params {

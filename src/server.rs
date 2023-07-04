@@ -1,21 +1,18 @@
-use std::net::TcpListener;
-use std::net::TcpStream;
-use std::io::Write;
+use std::io::{Read, Write};
+use std::net::{TcpListener};
 
-pub fn serve(html: &String) {
-    let url = "127.0.0.1:7878";
-    let listener = TcpListener::bind(url).unwrap();
-    println!("HTML served at http://{}", url);
+pub fn serve(body: String) {
+    let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+    println!("HTML served at http://{}", listener.local_addr().unwrap());
+
     for stream in listener.incoming() {
-        let stream = stream.unwrap();
-        handle_request(stream, html);
+        let mut stream = stream.unwrap();
+
+        let mut buffer = [0; 1024];
+        stream.read(&mut buffer).unwrap();
+
+        let response = format!("HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}", body.len(), body);
+        stream.write(response.as_bytes()).unwrap();
+        stream.flush().unwrap();
     }
-}
-
-fn handle_request(mut stream: TcpStream, html: &String) {
-    let status_line = "HTTP/1.1 200 OK";
-    let length = html.len();
-
-    let response = format!("{}\r\nContent-Length: {}\r\n\r\n{}", status_line, length, html);
-    stream.write_all(response.as_bytes()).unwrap();
 }
