@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 nav {
@@ -11,7 +12,7 @@ nav {
     overflow: auto;
     padding: 1rem;
     background-color: antiquewhite;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 0.875rem;
 }
 
 nav dl {
@@ -35,8 +36,20 @@ main {
 }
 
 main code {
-    background-color: rgba(233,233,233,0.85);
+    background-color: rgba(233, 233, 233, 0.85);
     padding: 0.25rem;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+}
+
+#go-to {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+}
+
+#go-to input {
+    width: 15rem;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(233, 233, 233, 0.85);
 }

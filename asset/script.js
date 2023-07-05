@@ -1,5 +1,6 @@
 const navbar = document.querySelector('nav');
 const main = document.querySelector('main');
+const headingList = document.getElementById('heading-list');
 const children = main.children;
 const toc = {};
 
@@ -11,6 +12,9 @@ for (let i = 0; i < children.length; i++) {
     const text = child.innerText;
     const id = encodeURI(text.replace(/\s/g, '-'));
     child.setAttribute('id', id);
+    const opt = document.createElement('option');
+    opt.setAttribute('value', text);
+    headingList.appendChild(opt);
     if (tag === 'h1') {
         toc[id] = {
             id, text,
@@ -74,3 +78,9 @@ for (let h1 in toc) {
     }
     navbar.appendChild(dl);
 }
+
+document.getElementById('heading-name').addEventListener('change', (e) => {
+    const id = e.target.value;
+    const el = document.getElementById(encodeURI(id.replace(/\s/g, '-')));
+    el.scrollIntoView();
+});
